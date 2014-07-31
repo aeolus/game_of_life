@@ -2,14 +2,14 @@
  * Created with IntelliJ IDEA. User: chengwei Date: 30/07/14 Time: 10:06 To
  * change this template use File | Settings | File Templates.
  */
-public class cell {
+public class Cell {
 
-    private cellState cellState;
-    private cellState cellNextState;
+    private CellState state;
+    private CellState nextState;
     private int age;
 
-    public cell() {
-        this.cellState = cellState.DEAD;
+    public Cell() {
+        this.state = CellState.DEAD;
         this.age = 0;
     }
 
@@ -18,19 +18,19 @@ public class cell {
     }
 
     public boolean isAlive() {
-        return this.cellState == cellState.ALIVE;
+        return this.state == CellState.ALIVE;
     }
 
     public boolean isSurvived() {
-        return this.cellNextState == cellState.ALIVE;
+        return this.nextState == CellState.ALIVE;
     }
 
     public void seed() {
-        this.cellState = cellState.ALIVE;
+        this.state = CellState.ALIVE;
     }
 
     public void update() {
-        this.cellState = this.cellNextState;
+        this.state = this.nextState;
     }
 
     public void setNextState(int aliveNeighbors) {
@@ -43,8 +43,8 @@ public class cell {
                 this.survive();
             }
             else if (aliveNeighbors > 3) {
-                    this.killNext();
-                }
+                this.killNext();
+            }
         } else {
             if (aliveNeighbors == 3)
             {
@@ -54,19 +54,18 @@ public class cell {
     }
 
     private void killNext() {
-        this.cellNextState = cellState.DEAD;
+        this.nextState = CellState.DEAD;
         this.age = 0;
     }
 
     private void reproduceNext() {
-        this.cellNextState = cellState.ALIVE;
+        this.nextState = CellState.ALIVE;
         this.age++;
     }
 
     private void survive() {
-        this.cellNextState = this.cellState;
+        this.nextState = this.state;
         this.age++;
     }
-
 
 }

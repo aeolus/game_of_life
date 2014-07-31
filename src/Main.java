@@ -4,30 +4,20 @@ public class Main {
         System.out.println("Hello World!");
 
         int dim = 10;
-        world w = new world(dim);
-        w.print();
+        World w = new World(dim);
 
         // Seed
-        System.out.println("\nNew world:");
-        randomWorld(dim, w);
+        System.out.println("\nNew World created:");
+        w.random();
         w.print();
 
         // Tick
         for (int i = 0; i < 100; i++) {
-            System.out.println("\nNew world step " + i + ":");
+            System.out.println("\nNew World step " + (i+1) + ":");
             w.tick();
             w.print();
         }
-
     }
 
-    private static void randomWorld(int dim, world w) {
-        for (int i = 0; i < dim; i++) {
-            for (int j = 0; j < dim; j++) {
-                if (Math.random() > 0.5) {
-                    w.seed(i, j);
-                }
-            }
-        }
-    }
+
 }
